@@ -38,3 +38,4 @@ userRouter.get('/users', (req, res) => {
 });
 
 export default userRouter;
+export { csvdata };

@@ -1,0 +1,288 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  padding: 50px;
+  height: 10em;
+  pointer-events: none;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  /*from {*/
+  /*  transform: rotate(0deg);*/
+  /*}*/
+  /*to {*/
+  /*  transform: rotate(360deg);*/
+  /*}*/
+}
+
+/*CARDSTYLE*/
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(50deg, rgba(130,201, 132, 0.7), rgba(187,1970, 96, 0.6)),
+  #000;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  font-size: 24px;
+}
+
+.card span {
+  display: block;
+  margin-top: 10px;
+}
+
+
+
+/*TABLE STYLE*/
+
+/* Seu arquivo de estilo CSS */
+.tab-container {
+  width: 90%;
+}
+
+
+.table-list {
+  font-family: Arial, sans-serif;
+  margin: 10px auto;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(130,201, 132, 0.7);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th  {
+  padding: 12px 15px;
+  text-align: center;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+}
+table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+}
+
+table th {
+  background-color: Black;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color:  rgba(187,1970, 96, 0.6);
+}
+
+table tr:hover {
+  background-color: #ddd;
+  color: black;
+  font-style: oblique;
+}
+
+
+
+
+/*SearchBar*/
+
+.search-bar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  height: 60px;
+  padding: 10px;
+  font-size: 50px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/*BUTTON*/
+
+
+.warning {
+  text-align: center; /* Centraliza o conteúdo dentro do elemento de aviso */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: center
+}
+
+.p {
+  margin: 0;
+  font-size: large;
+}
+
+.input {
+  display: none;
+}
+
+.button {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  padding: 10px 20px;
+  border: none; /* Remova o "border" para evitar a borda preta extra */
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(to left, rgba(130, 201, 132, 0.7), rgba(187, 197, 96, 0.6)) right;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  background-position: left;
+  transform: scale(1.1);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.inputs {
+  display: flex;
+  width: 90%;
+  gap: 5%;
+}
+
+
+/*TABCONTAINER*/
+
+
+.nav {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 5%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  border-radius: 40px;
+  background: transparent;
+  overflow: hidden;
+  height: 60px;
+  padding: 0;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-link {
+  color: white;
+  width: 100%;
+  background: transparent;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link.fill-right::before {
+  left: auto;
+  right: 0;
+  transition: width 0.3s;
+}
+
+.nav-link.fill-left::before {
+  left: 0;
+  transition: width 0.3s;
+}
+
+.nav-link.fill-right::before,
+.nav-link.fill-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(50deg, rgba(130, 201, 132, 0.7), rgba(187, 1970, 96, 0.6));
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 100%;
+}
+
+
+.nav-link.active,
+.nav-link:hover {
+  color: #FFFFFF;
+}
+
+
+
+
+@media (max-width: 600px) {
+
+  h3 {
+  font-size: large;
+  }
+
+  .card {
+    max-width: 90%;
+
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  table th,
+  table td {
+    padding: 10px;
+  }
+
+  .inputs {
+    display: inline-block;
+    width: 90%;
+  }
+
+  .search-bar {
+    margin-top: 0;
+  }
+
+  .button {
+    margin-top: 0;
+  }
+
+}

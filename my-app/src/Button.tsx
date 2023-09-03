@@ -1,29 +1,45 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
-interface CardProps {
-    data: Array<{
-        nome: string;
-        cidade: string;
-        pais: string;
-        esporteFavorito: string;
-    }>;
+const FileInputComponent: React.FC = () => {
+    const [selectedFile, setSelectedFile] = useState<File | string | null>(null);
 
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            const selected = files[0];
 
-}
+            // Verifique a extensão do arquivo
+            const validExtensions = ['csv'];
+            const fileExtension = selected.name.split('.').pop()?.toLowerCase();
 
-const CardList: React.FC<CardProps> = ({ data }) => {
+            if (fileExtension && validExtensions.includes(fileExtension)) {
+                setSelectedFile(selected);
+            } else {
+                setSelectedFile('Invalid');
+            }
+        }
+    };
+
     return (
-        <div className="card-list">
-            {data.map((item, index) => (
-                <div className="card" key={index}>
-                    <h3 className="name"> {item.nome} </h3>
-                    <span className="city"> City: {item.cidade} </span>
-                    <span className="country"> Country: {item.pais} </span>
-                    <span className="sport"> Favorite Sport: {item.esporteFavorito} </span>
+        <div className="inputs">
+            <input className="input" type="file" accept=".csv" onChange={handleFileChange} id="fileInput" />
+            <label htmlFor="fileInput" className="button">
+                Select Archive
+            </label>
+            {selectedFile !== null && selectedFile !== 'Invalid' ? (
+                <div className="warning">
+                    {selectedFile instanceof File && (
+                        <p className="p">Arquivo selecionado: {selectedFile.name}</p>
+                    )}
+                    {/* Aqui você pode fazer algo com o arquivo selecionado, como enviá-lo para o servidor */}
                 </div>
-            ))}
+            ) : selectedFile === 'Invalid' ? (
+                <div className="warning">
+                    <p className="p">Selected file is invalid.<br />Select a ".csv" file.</p>
+                </div>
+            ) : null}
         </div>
     );
 };
 
-export default CardList;
+export default FileInputComponent;
