@@ -2,10 +2,10 @@ import React from 'react';
 
 interface TableProps {
     data: Array<{
-        nome: string;
-        cidade: string;
-        pais: string;
-        esporteFavorito: string;
+        column1: string;
+        column2: string;
+        column3: string;
+        column4: string;
     }>;
 }
 
@@ -24,10 +24,10 @@ const TableList: React.FC<TableProps> = ({ data }) => {
                 <tbody>
                 {data.map((item, index) => (
                     <tr key={index}>
-                        <td>{item.nome}</td>
-                        <td>{item.cidade}</td>
-                        <td>{item.pais}</td>
-                        <td>{item.esporteFavorito}</td>
+                        <td>{item.column1}</td>
+                        <td>{item.column2}</td>
+                        <td>{item.column3}</td>
+                        <td>{item.column4}</td>
                     </tr>
                 ))}
                 </tbody>
