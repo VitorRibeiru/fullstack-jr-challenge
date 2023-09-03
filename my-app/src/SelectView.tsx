@@ -1,116 +1,34 @@
 import React, {useMemo, useState} from 'react';
 import CardList from "./Card";
-import Button from "./Button";
 import TableList from "./Table";
+import FileUpload from "./FileUpload";
 
-
-const archive: any[] = [
-    {
-        nome: 'Michael Johnson',
-        cidade: 'Los Angeles',
-        pais: 'USA',
-        esporteFavorito: 'Basketball',
-    },
-    {
-        nome: 'Sophia Garcia',
-        cidade: 'Mexico City',
-        pais: 'Mexico',
-        esporteFavorito: 'Soccer',
-    },
-    {
-        nome: 'David Kim',
-        cidade: 'Seoul',
-        pais: 'South Korea',
-        esporteFavorito: 'Baseball',
-    },
-    {
-        nome: 'Maria Lopez',
-        cidade: 'Madrid',
-        pais: 'Spain',
-        esporteFavorito: 'Tennis',
-    },
-    {
-        nome: 'Alex Wong',
-        cidade: 'Hong Kong',
-        pais: 'China',
-        esporteFavorito: 'Table Tennis',
-    },
-    {
-        nome: 'Olivia Müller',
-        cidade: 'Munich',
-        pais: 'Germany',
-        esporteFavorito: 'Swimming',
-    },{
-        nome: 'Michael Johnson',
-        cidade: 'Los Angeles',
-        pais: 'USA',
-        esporteFavorito: 'Basketball',
-    },
-    {
-        nome: 'Sophia Garcia',
-        cidade: 'Mexico City',
-        pais: 'Mexico',
-        esporteFavorito: 'Soccer',
-    },
-    {
-        nome: 'David Kim',
-        cidade: 'Seoul',
-        pais: 'South Korea',
-        esporteFavorito: 'Baseball',
-    },
-    {
-        nome: 'Maria Lopez',
-        cidade: 'Madrid',
-        pais: 'Spain',
-        esporteFavorito: 'Tennis',
-    },
-    {
-        nome: 'Alex Wong',
-        cidade: 'Hong Kong',
-        pais: 'China',
-        esporteFavorito: 'Table Tennis',
-    },
-    {
-        nome: 'Olivia Müller',
-        cidade: 'Munich',
-        pais: 'Germany',
-        esporteFavorito: 'Swimming',
-    },{
-        nome: 'Michael Johnson',
-        cidade: 'Los Angeles',
-        pais: 'USA',
-        esporteFavorito: 'Basketball',
-    },
-    {
-        nome: 'Sophia Garcia',
-        cidade: 'Mexico City',
-        pais: 'Mexico',
-        esporteFavorito: 'Soccer',
-    },
-    {
-        nome: 'David Kim',
-        cidade: 'Seoul',
-        pais: 'South Korea',
-        esporteFavorito: 'Baseball',
-    }
-];
-interface SelectViewProps {
-    onSearchChange: (value: string) => void;
+interface ArchiveItem {
+    nome: string;
+    cidade: string;
+    pais: string;
+    esporteFavorito: string;
 }
 
-function SelectView({ onSearchChange}: SelectViewProps)  {
-    const [activeTab, setActiveTab] = useState('first');
+const archive: ArchiveItem[] = [];
+interface SelectViewProps {
+    searchValue: string;
+}
+
+function SelectView({ searchValue }: SelectViewProps)  {
+   const [activeTab, setActiveTab] = useState('first');
     const [search, setSearch] = useState('');
+    const [archiveData, setArchiveData] = useState<ArchiveItem[]>(archive);
 
     const archiveFiltered = useMemo(() => {
-        const lowerSearch = search.toLowerCase();
-        return archive.filter((item) =>
+        const lowerSearch = searchValue.toLowerCase();
+        return archiveData.filter((item) =>
             item.nome.toLowerCase().includes(lowerSearch) ||
             item.cidade.toLowerCase().includes(lowerSearch) ||
             item.pais.toLowerCase().includes(lowerSearch) ||
             item.esporteFavorito.toLowerCase().includes(lowerSearch)
         );
-    }, [search, archive]);
+    }, [searchValue, archiveData]);
 
     const handleTabClick = (tabKey: string) => {
         setActiveTab(tabKey);
@@ -132,7 +50,7 @@ function SelectView({ onSearchChange}: SelectViewProps)  {
                     </li>
                 </ul>
            </div>
-            <div>
+            {<div className="inputinner">
             <div className="tab-content">
                 <div className={`tab-pane ${activeTab === 'first' ? 'show active' : ''}`} id="first">
                     <div className="row">
@@ -145,16 +63,7 @@ function SelectView({ onSearchChange}: SelectViewProps)  {
                     </div>
                 </div>
             </div>
-            <input
-                className="search-bar"
-                type="text"
-                value={search}
-                onChange={(ev) => {
-                    setSearch(ev.target.value);
-                    onSearchChange(ev.target.value); // Chamando a função passada como prop
-                }}
-            />
-            </div>
+            </div>}
         </div>
     );
 }

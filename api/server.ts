@@ -4,7 +4,7 @@ import usersRouter from "./routers/users.router";
 import bodyParser from "body-parser";
 import multer from "multer";
 
-const upload = multer();
+// const upload = multer();
 
 // Porta do servidor
 const PORT = process.env.PORT || 3000
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 // Cors
 app.use(cors({
-    origin: ['http://localhost:3000']
+    origin: 'http://localhost:4000'
 }));
 
 app.use('/api', usersRouter);

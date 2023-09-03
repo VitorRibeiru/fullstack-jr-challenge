@@ -28,13 +28,15 @@ userRouter.post('/files',
             });
 
         // Agora, csvdata contém os dados do CSV
-        console.log(csvdata);
-    }    return response.send('CSV data received and processed successfully')
+    }    return response.send(csvdata)
 
 })
-
+export function getCsvData() {
+    return csvdata;
+}
 userRouter.get('/users', (req, res) => {
     res.send('Lê todos os itens');
+    res.json(csvdata);
 });
 
 export default userRouter;
