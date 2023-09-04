@@ -10,15 +10,21 @@ interface TableProps {
 }
 
 const TableList: React.FC<TableProps> = ({ data }) => {
+    if (data.length === 0) {
+        return null; // Retorna nulo se a lista estiver vazia
+    }
+
     return (
+
+
         <div className="table-list">
             <table>
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Cidade</th>
-                    <th>País</th>
-                    <th>Esporte Favorito</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Favorite Sport</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,6 +40,7 @@ const TableList: React.FC<TableProps> = ({ data }) => {
             </table>
         </div>
     );
+
 };
 
 export default TableList;

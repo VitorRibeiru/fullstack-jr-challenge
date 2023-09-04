@@ -2,26 +2,24 @@ import express from 'express'
 import cors from 'cors'
 import usersRouter from "./routers/users.router";
 import bodyParser from "body-parser";
-import multer from "multer";
+import {configDotenv} from "dotenv";
 
-// const upload = multer();
 
-// Porta do servidor
-const PORT = process.env.PORT || 3000
+const env = configDotenv()
 
-// Host do servidor
+const BACKEND = process.env.BACKEND || 3000;
+
 const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 
-// App Express
 const app = express();
 
 app.use(bodyParser.urlencoded());
 
 app.use(bodyParser.json());
 
-// Endpoint raiz
+// Endpoint
 app.get('/', (req, res) => {
-    res.send('Bem-vindo!');
+    res.send('BACKEND IS RUNNING!');
 });
 
 // Cors
@@ -31,12 +29,11 @@ app.use(cors({
 
 app.use('/api', usersRouter);
 
-// Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {
     res.status(404);
 });
 
-// Inicia o sevidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`);
+//  server start
+app.listen(BACKEND, () => {
+    console.log(`Server running sucessful ${HOSTNAME}:${BACKEND}`);
 });

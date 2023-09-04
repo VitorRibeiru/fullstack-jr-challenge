@@ -5,7 +5,7 @@ const userRouter = express.Router();
 const upload = multer();
 let previousCsvContent: string | null = null;
 
-userRouter.post('/files', upload.single('arquivo'), (request: Request, response: Response) => {
+userRouter.post('/files', upload.single('archive'), (request: Request, response: Response) => {
     if (request.file != null) {
         const csvContent = request.file.buffer.toString('utf-8');
 
@@ -32,10 +32,10 @@ userRouter.post('/files', upload.single('arquivo'), (request: Request, response:
 
             response.send(csvdata)
         } else {
-            
+
         }
     } else {
-        response.status(400).send('Nenhum arquivo foi enviado na requisição.');
+        response.status(400).send('No file was sent in the request.');
     }
 });
 
@@ -48,7 +48,7 @@ userRouter.get('/users', (req, res) => {
     if (previousCsvContent) {
         res.json(previousCsvContent);
     } else {
-        res.status(404).send('Nenhum arquivo CSV foi carregado ainda.');
+        res.status(404).send('No CSV files have been uploaded yet.');
     }
 });
 

@@ -56,6 +56,8 @@ html {
 /*SearchBar*/
 
 .search-bar {
+  text-align: center;
+  font-size: 1rem;
   margin-left: 5%;
   margin-right: 5%;
   display: flex;

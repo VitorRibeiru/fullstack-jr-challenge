@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import SelectView from "./SelectView";
 import axios from "axios";
+import { Person } from './types';
 
 
 
@@ -12,10 +13,10 @@ function App() {
 
     const [selectedFile, setSelectedFile] = useState<File | string | null>(null);
     const [search, setSearch] = useState('');
-    const [dataFile, setDataFile] = useState<any[]>([]);
-    const [serverResponse, setServerResponse] = useState([]); // Adicione o estado serverResponse
+    const [dataFile, setDataFile] = useState<Person[]>([]);
+    const [serverResponse, setServerResponse] = useState([]);
     const [invalidFile, setInvalidFile] = useState(false);
-    const [buttonText, setButtonText] = useState("Selecionar Arquivo");
+    const [buttonText, setButtonText] = useState("Select File");
 
     const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
@@ -34,7 +35,7 @@ function App() {
             if (fileExtension && validExtensions.includes(fileExtension)) {
                 try {
                     const formData = new FormData();
-                    formData.append('arquivo', selected);
+                    formData.append('archive', selected);
 
                     const response = await axios.post('http://localhost:3000/api/files', formData, {
                         headers: {
@@ -45,14 +46,14 @@ function App() {
                     setSelectedFile(selected);
                     setButtonText(selected.name);
                     setInvalidFile(false);
-                    setDataFile(response.data); // Atualize o estado com o response.data
+                    setDataFile(response.data);
 
                 } catch (error) {
-                    console.error('Erro ao enviar o arquivo:', error);
+                    console.error('Error on send file:', error);
                 }
             } else {
                 setSelectedFile('Invalid');
-                setButtonText("Arquivo Inválido. Selecione um arquivo '.CSV'.");
+                setButtonText("Invalid File. Select a '.CSV' file'.");
                 setInvalidFile(true);
             }
         }
@@ -79,6 +80,7 @@ function App() {
                 type="text"
                 value={search}
                 onChange={handleSearchChange}
+                placeholder='Find a Person'
             />
             <div className="inputs">
                 <input className="input" type="file" accept=".csv" onChange={handleFileChange} id="fileInput" style={{ display: 'none' }} />
